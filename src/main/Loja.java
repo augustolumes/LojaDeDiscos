@@ -116,11 +116,47 @@ public class Loja {
                 System.out.println(p);
                 System.out.println("-------------------");
             }
+            System.out.println("deseja remover algum disco? (sim, nao) ");
+            String opcao = input.next();
+
+            switch (opcao) {
+                case "sim":
+                    removerDisco();
+                    break;
+
+                case "não":
+                    menu();
+                    break;
+            }
+
         } else {
             System.out.println("Nenhum produto cadastrado");
         }
 
         menu();
+    }
+
+    private static void removerDisco() {
+        System.out.print("Código do produto: ");
+        int id = Integer.parseInt(input.next());
+
+        boolean encontrou = false;
+        Disco p = null;
+        for (Disco d : discos) {
+            if (d.getId() == id) {
+                encontrou = true;
+                p = d;
+            }
+        }
+
+        if (encontrou) {
+            discos.remove(p);
+            System.out.println("Disco removido");
+        } else {
+            System.out.println("Produto não encontrado");
+            menu();
+        }
+        ;
     }
 
     private static void comprarDiscos() {
@@ -204,7 +240,7 @@ public class Loja {
         if (opcao == "s") {
             menu();
         } else {
-            System.out.println("Volte sempre!");
+            System.out.println("\nObrigado, Volte sempre!");
             System.exit(0);
         }
 
